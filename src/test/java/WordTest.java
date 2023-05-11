@@ -1,38 +1,30 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.wordle.Game;
+
 import org.wordle.RandomWord;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 
-class WordTest {
-
-@Mock
-RandomWord randomWord;
+public class WordTest {
 
 
-        @Test
-        public void myMockedClass() throws FileNotFoundException {
-            RandomWord mockRandomWord = Mockito.mock(RandomWord.class);
+    @Test
+    public void mockRandomWord() {
+        ArrayList<String> mockWords = new ArrayList<>(Arrays.asList("AAAAA", "BBBBB", "CCCCC", "DDDDD"));
+        Random random = mock(Random.class);
+        when(random.nextInt(mockWords.size())).thenReturn(2);
 
-            when(mockRandomWord.RandomWordMethod()).thenReturn("VOICE");
-            Game testGame = new Game(mockRandomWord);
-            testGame.runGame();
-
-
-        }
-
-
-
-
-
-
-
+        Scanner test = mock(Scanner.class);
+        when(test.next()).thenReturn(mockWords.get(0), mockWords.get(2));
+    }
 
 
 
@@ -53,8 +45,6 @@ RandomWord randomWord;
         Assertions.assertTrue(randomWord.length() < 6);
     }
 
-
-
-    }
+}
 
 
